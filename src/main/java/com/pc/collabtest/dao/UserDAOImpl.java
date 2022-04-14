@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,19 +14,20 @@ import com.pc.collabtest.model.User;
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
+	@Qualifier("jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 
 	public List<User> getUsers() {
-		return jdbcTemplate.query("SELECT id, first_name, last_name, age, gender FROM users",
-				(rs, rowNum) -> new User(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"),
+		return jdbcTemplate.query("SELECT user_id, first_name, last_name, age, gender FROM users",
+				(rs, rowNum) -> new User(rs.getInt("user_id"), rs.getString("first_name"), rs.getString("last_name"),
 						rs.getString("age"), rs.getString("gender")));
 	}
 
 	public void insertBatch() {
-		jdbcTemplate.execute("DROP TABLE users IF EXISTS");
-		jdbcTemplate.execute(
-				"CREATE TABLE users(id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255), age VARCHAR(3), gender VARCHAR(1))");
-		jdbcTemplate.batchUpdate("INSERT INTO users(first_name, last_name, age, gender) VALUES (?,?,?,?)", userData());
+//		jdbcTemplate.execute("DROP TABLE users IF EXISTS");
+//		jdbcTemplate.execute(
+//				"CREATE TABLE users(id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255), age VARCHAR(3), gender VARCHAR(1))");
+//		jdbcTemplate.batchUpdate("INSERT INTO users(first_name, last_name, age, gender) VALUES (?,?,?,?)", userData());
 	}
 
 	private List<Object[]> userData() {

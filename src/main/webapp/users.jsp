@@ -42,7 +42,7 @@
 	</header>
 
 	<div class="container">
-		<h2>Section title</h2>
+		<h2>Users</h2>
 		<div class="table-responsive">
 			<table class="table table-striped table-sm">
 				<thead>
@@ -57,7 +57,7 @@
 				<tbody>
 					<s:iterator value="users">
 						<tr>
-							<td align="center"><s:property value="id" /></td>
+							<td><s:property value="userId" /></td>
 							<td><s:property value="firstName" /></td>
 							<td><s:property value="lastName" /></td>
 							<td><s:property value="age" /></td>

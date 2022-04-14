@@ -14,8 +14,8 @@ import com.pc.collabtest.service.ServiceFacade;
 
 @SpringBootApplication
 public class Application extends org.springframework.boot.web.servlet.support.SpringBootServletInitializer implements ApplicationRunner {
-	@Autowired
-	private ServiceFacade userService;
+	//@Autowired
+	//private ServiceFacade userService;
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -37,7 +37,7 @@ public class Application extends org.springframework.boot.web.servlet.support.Sp
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		userService.doService("insert");
+		//userService.doService("insert");
 	}
 
 }

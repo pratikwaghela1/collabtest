@@ -4,31 +4,25 @@ drop table users
 GO
 
 CREATE TABLE [dbo].[users](
-	[userid] [int] IDENTITY(100,1) NOT NULL,
-	[firstname] [NVARCHAR](256) NOT NULL,
-	[lastname] [NVARCHAR](256)  NOT NULL,
-	[email] [NVARCHAR](256) NOT NULL,
-	[emaildomain] [int] NOT NULL,
+	[user_id] [int] IDENTITY(100,1) NOT NULL,
+	[first_name] [NVARCHAR](256) NOT NULL,
+	[last_name] [NVARCHAR](256)  NOT NULL,
+	[age] [int] NOT NULL,
+	[gender] [NVARCHAR](1)  NOT NULL,
 	[password] [NVARCHAR](256) NOT NULL CONSTRAINT DF_users_password DEFAULT '',
-	[createdby] [int] NULL,
-	[createddate] [datetime]  NULL,
-	[modifiedby] [int]  NULL,
-	[modifieddate] [datetime]  NULL,
-	[status] [int] NOT NULL,
-	[lastlogindate] [datetime] NULL,
-	[invalidlogins] [int] NOT NULL CONSTRAINT DF_users_invalidlogins DEFAULT 0,
-	[systemuser] [int] NULL  CONSTRAINT DF_users_systemuser DEFAULT 0,
-	[telephone][NVARCHAR](256) NULL CONSTRAINT DF_users_telephone DEFAULT '',
-	[bio] NVARCHAR(MAX) NOT NULL CONSTRAINT DF_users_bio DEFAULT '',
-	[dateOfBirth] DATETIME NOT NULL CONSTRAINT DF_users_dateOfBirth DEFAULT '',
-	[avatar] [int] NOT NULL CONSTRAINT DF_users_avatar DEFAULT 0,
-	[avatarTypeID] [int] NOT NULL CONSTRAINT DF_users_avatarTypeID DEFAULT 0,
-	[mobilePhone] [NVARCHAR](256) NOT NULL CONSTRAINT DF_users_mobilePhone DEFAULT '',
-	[autoLogin] [INT] NOT NULL DEFAULT 0,
-	[resetPasswordDate] DATETIME NOT NULL DEFAULT ''
  CONSTRAINT [PK_users] PRIMARY KEY CLUSTERED
 (
-	[userid] ASC
+	[user_id] ASC
 )WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+INSERT INTO users(first_name,last_name,age,gender,password) values ('John', 'Doe',25,'M','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('Jane', 'Doe',23,'F','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('Sarah', 'Bosch',34,'F','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('Michael', 'Murray',20,'M','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('Daisy', 'Chen',19,'F','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('May', 'Williams',15,'M','1234');
+INSERT INTO users(first_name,last_name,age,gender,password) values ('Alex', 'Johnson',40,'M','1234');
+
+
