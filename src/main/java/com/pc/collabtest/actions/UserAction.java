@@ -6,23 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pc.collabtest.model.User;
-import com.pc.collabtest.service.ServiceFacade;
+import com.pc.collabtest.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class UserAction {
 	private static final long serialVersionUID = 1L;
-	private List<User> users;
+	public List<User> users;
 
 	@Autowired
-	private ServiceFacade userService;
+	private UserService userService;
 
 	@SuppressWarnings("unchecked")
 	public String execute() throws Exception {
-		users = (List<User>) userService.doService("get");
+		users = userService.getAllUsers();
 		return "success";
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
 }

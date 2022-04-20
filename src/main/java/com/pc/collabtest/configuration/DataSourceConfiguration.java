@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.zaxxer.hikari.HikariDataSource;
@@ -44,13 +45,19 @@ public class DataSourceConfiguration {
 		return dataSource;
 	}
 
+	/*
+	 * @Primary this will help some autoconfiguraiton to pick this as primary/default datasource.
+	 *  alos help to create entity manager without this jpaRepository won't work
+	 */	
 	@Bean
-	public DataSource appDataSource() {
-		log.info("...............................................Initializing appDataSource START");
+	@Primary 
+	public DataSource getDataSource() {
+		log.info("...............................................Initializing getDataSource START");
 		HikariDataSource dataSource = DataSourceBuilder.create().url(url).username(user).password(password)
 				.driverClassName(driver).type(HikariDataSource.class).build();
 		dataSource.setMaximumPoolSize(5);
-		log.info("...............................................Initializing appDataSource END");
+		dataSource.setConnectionTimeout(1800000);
+		log.info("...............................................Initializing getDataSource END");
 		return dataSource;
 	}
 
@@ -58,6 +65,6 @@ public class DataSourceConfiguration {
 	public JdbcTemplate jdbcTemplate() {
 		log.info("................................................Initializing jdbcTemplate START");
 		log.info("................................................Initializing jdbcTemplate END");
-		return new JdbcTemplate(appDataSource());
+		return new JdbcTemplate(getDataSource());
 	}
 }

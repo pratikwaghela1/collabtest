@@ -2,15 +2,26 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
-  
+
 <struts>
-  
-  <constant name="struts.devMode" value="true" />
-  <constant name="struts.objectFactory" value="spring" />
-  
-  <package name="default" extends="struts-default">
-    <action name="users" class="com.pc.collabtest.actions.UserAction" method="execute">
-      <result name="success">/users.jsp</result>
-    </action>
-  </package>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory" value="spring" />
+
+	<package name="default" extends="struts-default">
+		<action name="users" method="execute" class="com.pc.collabtest.actions.UserAction">
+			<result name="success">/users.jsp</result>
+		</action>
+
+		<action name="login" method="login" class="com.pc.collabtest.actions.LoginAction">
+			<result name="success">/login.jsp</result>
+		</action>
+
+		<action name="register" method="register" class="com.pc.collabtest.actions.RegisterAction">
+			<result name="success">/register.jsp</result>
+		</action>
+		<action name="doRegister" method="doRegister" class="com.pc.collabtest.actions.RegisterAction">
+			<result name="success">/register.jsp</result>
+		</action>
+	</package>
 </struts>

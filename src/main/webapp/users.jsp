@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- Bootstrap core CSS -->
-<link href="/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 	<header class="p-3 mb-3 border-bottom">
@@ -15,8 +15,8 @@
 				</a>
 
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+					<li><a href="login.action" class="nav-link px-2 link-secondary">Login</a></li>
+					<li><a href="register.action" class="nav-link px-2 link-dark">Register</a></li>
 					<li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
 					<li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
 				</ul>
@@ -48,16 +48,18 @@
 				<thead>
 					<tr>
 						<th>ID</th>
+						<th>User Name</th>
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Age</th>
 						<th>Gender</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody> 
 					<s:iterator value="users">
 						<tr>
 							<td><s:property value="userId" /></td>
+							<td><s:property value="userName" /></td>
 							<td><s:property value="firstName" /></td>
 							<td><s:property value="lastName" /></td>
 							<td><s:property value="age" /></td>
@@ -65,13 +67,13 @@
 							<td><c:if test="${gender == 'M'}">Male</c:if> <c:if test="${gender == 'F'}">Female</c:if></td>
 						</tr>
 					</s:iterator>
-				</tbody>
+				</tbody>				
 			</table>
 		</div>
 	</div>
 	<!-- CONTAINER CLOSE -->
 
 
-	<script src="/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

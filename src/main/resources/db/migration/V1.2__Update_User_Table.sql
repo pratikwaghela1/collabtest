@@ -1,0 +1,1 @@
+ALTER TABLE dbo.users ADD email VARCHAR(50) NULL;

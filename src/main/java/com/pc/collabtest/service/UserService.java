@@ -1,22 +1,12 @@
 package com.pc.collabtest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.pc.collabtest.dao.UserDAOImpl;
+import com.pc.collabtest.model.LoginCredentials;
+import com.pc.collabtest.model.User;
 
-@Service("userService")
-public class UserService implements ServiceFacade {
-     
-    @Autowired
-    private UserDAOImpl userDAO;
-     
-    public Object doService(Object... args) throws Exception {
-        if(args[0].equals("insert")){
-            userDAO.insertBatch();
-            return true;
-        }else{
-            return userDAO.getUsers();
-        }
-    }
+public interface UserService {
+	public List<User> getAllUsers() throws Exception;
+	
+	public boolean isValidCredentials(LoginCredentials credentials);
 }
