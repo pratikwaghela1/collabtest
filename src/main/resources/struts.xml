@@ -17,11 +17,12 @@
 			<result name="success">/login.jsp</result>
 		</action>
 
-		<action name="register" method="register" class="com.pc.collabtest.actions.RegisterAction">
-			<result name="success">/register.jsp</result>
+		<action name="userRegisterView" method="userRegisterView" class="com.pc.collabtest.actions.UserRegisterAction">
+			<result name="success">/userRegister.jsp</result>
 		</action>
-		<action name="doRegister" method="doRegister" class="com.pc.collabtest.actions.RegisterAction">
-			<result name="success">/register.jsp</result>
+		
+		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
+			<result name="success">/userRegister.jsp</result>
 		</action>
 	</package>
 </struts>
