@@ -6,7 +6,9 @@ import com.pc.collabtest.model.LoginCredentials;
 import com.pc.collabtest.model.User;
 
 public interface UserService {
-	public List<User> getAllUsers() throws Exception;
+	List<User> getAllUsers() throws Exception;
 	
-	public boolean isValidCredentials(LoginCredentials credentials);
+	boolean isValidCredentials(LoginCredentials credentials);
+
+	User saveUser(User user);
 }

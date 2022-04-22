@@ -9,8 +9,8 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default">
-		<action name="users" method="execute" class="com.pc.collabtest.actions.UserAction">
-			<result name="success">/users.jsp</result>
+		<action name="userList" method="userList" class="com.pc.collabtest.actions.UserAction">
+			<result name="success">/userList.jsp</result>
 		</action>
 
 		<action name="login" method="login" class="com.pc.collabtest.actions.LoginAction">
@@ -22,7 +22,8 @@
 		</action>
 		
 		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
-			<result name="success">/userRegister.jsp</result>
+			<result name="userList" type="redirectAction">userList</result>
+			<result name="userRegisterView" type="redirectAction">userRegisterView</result>
 		</action>
 	</package>
 </struts>

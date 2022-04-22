@@ -27,7 +27,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isValidCredentials(LoginCredentials credentials) {
-		
 		return false;
+	}
+	
+	@Override
+	public User saveUser(User user) {
+		return userRepository.save(user);
 	}
 }

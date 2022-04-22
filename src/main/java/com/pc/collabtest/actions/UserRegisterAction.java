@@ -20,13 +20,19 @@ public class UserRegisterAction implements ModelDriven<User>{
 	private UserService userService;
 	
 	public String userRegisterView() throws Exception {
+		log.info("userRegisterView() START");
 		return "success";
 	}
 	
 	public String userRegister() throws Exception {
-		log.info("userRegister method call ********************");
+		log.info("userRegister() START ********************");
 		log.info("user - {}",user);
-		return "success";
+		if(user != null) {
+			if(userService.saveUser(user) != null) {
+				return "userList";
+			}
+		}
+		return "userRegisterView";
 	}
 
 	@Override

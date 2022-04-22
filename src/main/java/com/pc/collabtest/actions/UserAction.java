@@ -20,7 +20,7 @@ public class UserAction {
 	private UserService userService;
 
 	@SuppressWarnings("unchecked")
-	public String execute() throws Exception {
+	public String userList() throws Exception {
 		users = userService.getAllUsers();
 		return "success";
 	}

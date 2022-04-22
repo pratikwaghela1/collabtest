@@ -28,8 +28,14 @@
   <h1 class="display-6">Register User</h1>
 
 		<s:form action="userRegister.action" name="userRegister" id="userRegister">
+			<s:textfield name="userName" label="User Name" />
 			<s:textfield name="firstName" label="First Name" />
+			<s:textfield name="lastName" label="Last Name" />
+			<s:textfield name="email" label="Email" />
+			<s:textfield name="password" label="Passowrd" />
+			<s:textfield name="confirmPassword" label="Confirm Passord" />
 			<s:textfield name="age" label="Age"/>
+			<s:radio label="Gender" name="gender" list="#{'M':'Male','F':'Female'}" value="'M'" />
 			<s:submit />
 		</s:form>
 
