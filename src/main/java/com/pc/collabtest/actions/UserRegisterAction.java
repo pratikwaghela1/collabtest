@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class UserRegisterAction extends ActionSupport implements ModelDriven<User>{
+public class UserRegisterAction implements ModelDriven<User>{
 
 	public User user = new User();
 	
@@ -34,13 +34,5 @@ public class UserRegisterAction extends ActionSupport implements ModelDriven<Use
 		return user;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 	
 }
