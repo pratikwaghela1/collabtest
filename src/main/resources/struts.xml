@@ -7,8 +7,19 @@
 
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.beanValidation.providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    <constant name="struts.beanValidation.ignoreXMLConfiguration" value="false"/>
+    <constant name="struts.beanValidation.convertMessageToUtf" value="false"/>
+    <constant name="struts.beanValidation.convertMessageFromEncoding" value="ISO-8859-1"/>
 
-	<package name="default" extends="struts-default">
+    <package name="my-bean-validation" extends="struts-bean-validation">
+	<!-- <package name="default" extends="struts-default"> -->
+
+		<interceptors>
+			<interceptor name="collabInterceptor" class="com.pc.collabtest.interceptors.CollabRequestInterceptor" />
+			<interceptor name="beanValidation" class="org.apache.struts.beanvalidation.validation.interceptor.BeanValidationInterceptor" />
+		</interceptors>
+		
 		<action name="userList" method="userList" class="com.pc.collabtest.actions.UserAction">
 			<result name="success">/userList.jsp</result>
 		</action>
@@ -17,13 +28,16 @@
 			<result name="success">/login.jsp</result>
 		</action>
 
-		<action name="userRegisterView" method="userRegisterView" class="com.pc.collabtest.actions.UserRegisterAction">
-			<result name="success">/userRegister.jsp</result>
+		<action name="userRegisterForm" method="userRegisterForm" class="com.pc.collabtest.actions.UserRegisterAction">
+			<!-- <interceptor-ref name="collabInterceptor" /> -->
+			<result name="success">/userRegisterForm.jsp</result>
 		</action>
-		
-		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
+
+
+		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">	
 			<result name="userList" type="redirectAction">userList</result>
-			<result name="userRegisterView" type="redirectAction">userRegisterView</result>
+			<result name="userRegisterForm" type="redirectAction">userRegisterForm</result>
+			<result name="input">/userRegisterForm.jsp</result>
 		</action>
 	</package>
 </struts>

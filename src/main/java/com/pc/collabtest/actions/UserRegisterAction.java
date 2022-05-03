@@ -1,10 +1,11 @@
 package com.pc.collabtest.actions;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import com.pc.collabtest.model.User;
 import com.pc.collabtest.service.UserService;
 
@@ -12,33 +13,53 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class UserRegisterAction implements ModelDriven<User>{
+public class UserRegisterAction extends ActionSupport {
 
-	public User user = new User();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Valid
+	public User user;
 	
 	@Autowired
 	private UserService userService;
 	
-	public String userRegisterView() throws Exception {
-		log.info("userRegisterView() START");
+	
+	public String userRegisterForm() throws Exception {
+		log.info("userRegisterForm() START");
 		return "success";
 	}
 	
 	public String userRegister() throws Exception {
 		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
+		log.info("userRegister() START ********************");
 		log.info("user - {}",user);
+		
 		if(user != null) {
 			if(userService.saveUser(user) != null) {
 				return "userList";
 			}
 		}
-		return "userRegisterView";
+		return "userRegisterForm";
 	}
 
-	@Override
-	public User getModel() {
+	public User getUser() {
 		return user;
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+     
 
 	
 }

@@ -1,12 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+	
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link
+	href="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 	<header class="p-3 mb-3 border-bottom">
 		<div class="container">
 			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -40,39 +48,24 @@
 		</div>
 	</header>
 
-	<div class="container">
-		<h2>Users</h2>
-		<div class="table-responsive">
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>User Name</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Age</th>
-						<th>Gender</th>
-					</tr>
-				</thead>
-				<tbody> 
-					<s:iterator value="users">
-						<tr>
-							<td><s:property value="userId" /></td>
-							<td><s:property value="userName" /></td>
-							<td><s:property value="firstName" /></td>
-							<td><s:property value="lastName" /></td>
-							<td><s:property value="age" /></td>
-							<%--  <td><s:if test="gender=='M'">Male</s:if><s:else>Female</s:else> ---   <s:property value="gender"/></td> --%>
-							<td><c:if test="${gender == 'M'}">Male</c:if> <c:if test="${gender == 'F'}">Female</c:if></td>
-						</tr>
-					</s:iterator>
-				</tbody>				
-			</table>
-		</div>
+
+  <h1 class="display-6">Register User</h1>
+
+		<s:form action="userRegister.action" name="userRegister" id="userRegister">
+			<s:textfield  key="user.userName" label="User Name" />
+			<s:textfield  key="user.firstName" label="First Name" />
+			<s:textfield  key="user.lastName" label="Last Name" />
+			<s:textfield  key="user.email" label="Email" />
+			<s:password  key="user.password" label="Passowrd" />
+			<s:password  key="user.confirmPassword" label="Confirm Passord" />
+			<s:textfield  key="user.age" label="Age"/>
+			<s:radio      key="user.gender" label="Gender"  list="#{'M':'Male','F':'Female'}" value="'M'" />
+			<s:submit />
+		</s:form>
 	</div>
-	<!-- CONTAINER CLOSE -->
-
-
-	<script src="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script
+		src="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 </body>
 </html>
