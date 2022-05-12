@@ -22,44 +22,50 @@ public class UserRegisterAction extends ActionSupport {
 
 	@Valid
 	public User user;
+
 	
-	@Autowired
-	private UserService userService;
+
+	private String userName;
 	
 	
 	public String userRegisterForm() throws Exception {
 		log.info("userRegisterForm() START");
 		return "success";
 	}
-	
+
 	public String userRegister() throws Exception {
+		log.info("userName " + userName);
 		log.info("userRegister() START ********************");
 		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("userRegister() START ********************");
-		log.info("user - {}",user);
-		
-		if(user != null) {
-			if(userService.saveUser(user) != null) {
-				return "userList";
-			}
+		log.info("user - {}", user);
+
+		if (user != null) {
+			return "userList";
+//			if(userService.saveUser(user) != null) {
+//				
+//			}
 		}
 		return "userRegisterForm";
 	}
 
 	public User getUser() {
+		log.info("getUserCall ................");
 		return user;
 	}
 
 	public void setUser(User user) {
+		log.info("setUserCall ................");
 		this.user = user;
 	}
 
-     
+	public String getUserName() {
+		log.info("getUserName ................");
+		return userName;
+	}
 
-	
+	public void setUserName(String userName) {
+		log.info("setUserName ................");
+		this.userName = userName;
+	}
+
 }

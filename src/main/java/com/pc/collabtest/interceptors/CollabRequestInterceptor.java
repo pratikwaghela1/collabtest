@@ -24,7 +24,7 @@ public class CollabRequestInterceptor extends AbstractInterceptor{
 		Map<String,Object> session = invocation.getInvocationContext().getSession();
 		
 		HttpParameters httpParameters = invocation.getInvocationContext().getParameters();
-		log.info("************************************************************");
+		log.info("************************************************************ CollabRequestInterceptor START");
 		for(String key : httpParameters.keySet()) {
 			log.info("param before:  " + key + " - " + httpParameters.get(key));
 		}
@@ -35,7 +35,7 @@ public class CollabRequestInterceptor extends AbstractInterceptor{
 		for(String key : httpParameters.keySet()) {
 			log.info("param after:  " + key + " - " + httpParameters.get(key));
 		}
-		log.info("************************************************************");
+		log.info("************************************************************ CollabRequestInterceptor END");
 		return result;
 	}
 
