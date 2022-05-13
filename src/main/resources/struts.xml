@@ -7,17 +7,14 @@
 
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
-	
-	
-	<!-- <package name="my-bean-validation" extends="struts-bean-validation"> -->
-		<package name="default" extends="struts-default">
 
+	<package name="default" extends="struts-default">
 		<interceptors>
 			<interceptor name="collabInterceptor" class="com.pc.collabtest.interceptors.CollabRequestInterceptor" />
 			<interceptor name="beanValidation" class="org.apache.struts.beanvalidation.validation.interceptor.BeanValidationInterceptor" />
 			<interceptor-stack name="appDefaultStack">
-				<interceptor-ref name="beanValidation"/>
-				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="beanValidation" />
+				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -30,24 +27,18 @@
 		</action>
 
 		<action name="userRegisterForm" method="userRegisterForm" class="com.pc.collabtest.actions.UserRegisterAction">
-			<!-- <interceptor-ref name="collabInterceptor" /> -->
-			<!-- <interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref> -->
+			<interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref>
 			<result name="success">/userRegisterForm.jsp</result>
 		</action>
+	</package>
 
-
-		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction" >
-			<!-- <interceptor-ref name="beanValidation"></interceptor-ref> -->
-			<!-- <interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref> -->
-			
-			<!-- <interceptor-ref name="modelDriven"/>
-			
-			<interceptor-ref name="collabInterceptor"></interceptor-ref> -->
-			<interceptor-ref name="appDefaultStack"/>
+	<package name="my-bean-validation" extends="struts-bean-validation">
+		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
+		    <interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref>
+			<interceptor-ref name="beanValidationDefaultStack"></interceptor-ref>
 			<result name="userList" type="redirectAction">userList</result>
 			<result name="userRegisterForm" type="redirectAction">userRegisterForm</result>
-			<result name="input">/userRegisterForm.jsp</result>
-			<!-- <result name="input" type="redirectAction">userRegisterForm</result> -->
+			<result name="input" type="redirectAction">userRegisterForm</result>
 		</action>
 	</package>
 </struts>
