@@ -9,15 +9,6 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default">
-		<interceptors>
-			<interceptor name="collabInterceptor" class="com.pc.collabtest.interceptors.CollabRequestInterceptor" />
-			<interceptor name="beanValidation" class="org.apache.struts.beanvalidation.validation.interceptor.BeanValidationInterceptor" />
-			<interceptor-stack name="appDefaultStack">
-				<interceptor-ref name="beanValidation" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
-
 		<action name="userList" method="userList" class="com.pc.collabtest.actions.UserAction">
 			<result name="success">/userList.jsp</result>
 		</action>
