@@ -23,7 +23,7 @@
 				</a>
 
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="login.action" class="nav-link px-2 link-secondary">Login</a></li>
+					<li><a href="loginForm.action" class="nav-link px-2 link-secondary">Login</a></li>
 					<li><a href="userRegisterForm.action" class="nav-link px-2 link-dark">Register</a></li>
 					<li><a href="userList.action" class="nav-link px-2 link-dark">Users</a></li>
 				</ul>
