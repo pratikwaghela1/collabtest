@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.struts2.dispatcher.SessionMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ public class LoginAction extends ActionSupport {
 	@Autowired
 	private LoginService loginService;
 	
-	Map<String,Object> session;
+	
 	
     public String loginForm() throws Exception {
 		log.info("loginForm().........START");
@@ -40,7 +41,7 @@ public class LoginAction extends ActionSupport {
 		log.info("login - {}",login);
 		User user = loginService.validateLogin(login);
 		if(null != user ) {
-			session = ActionContext.getContext().getSession();
+			Map<String,Object> session = ActionContext.getContext().getSession();
 			session.put(AppConstant.SESSION_USER, user);
 			return "success";
 		}
@@ -49,6 +50,19 @@ public class LoginAction extends ActionSupport {
 		return "input";
 	}
 
+	
+	
+	public String logout() throws Exception {
+		log.info("logout().........START");
+		SessionMap<String, Object> session = (SessionMap) ActionContext.getContext().getSession();
+
+		if(session != null) {
+			log.info(".....................invalidate session.......................");
+			session.invalidate();
+		}
+		
+		return "loginForm";
+	}
 	public Login getLogin() {
 		return login;
 	}

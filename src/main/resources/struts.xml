@@ -37,7 +37,10 @@
 			<result name="success">jsp/userList.jsp</result>
 		</action>
 
-	
+		<action name="logout" method="logout" class="com.pc.collabtest.actions.LoginAction">
+			<result name="loginForm" type="redirectAction">loginForm</result>
+		</action>
+			
 	</package>
 
 	<package name="my-bean-validation" extends="struts-bean-validation">
