@@ -10,32 +10,63 @@
 	<constant name="struts.custom.i18n.resources" value="global"></constant>
 
 	<package name="default" extends="struts-default">
-	     <action name="loginForm" method="loginForm" class="com.pc.collabtest.actions.LoginAction">
-	        <interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref>
-			<result name="success">/login.jsp</result>
+		<interceptors>
+			<interceptor name="authentication" class="com.pc.collabtest.interceptors.AuthenticatorInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+		<global-results>
+			<result name="loginForm" type="redirectAction">loginForm</result>
+		</global-results>
+
+		
+		<action name="loginForm" method="loginForm" class="com.pc.collabtest.actions.LoginAction">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">jsp/login.jsp</result>
 		</action>
-		<action name="userList" method="userList" class="com.pc.collabtest.actions.UserAction">
-			<result name="success">/userList.jsp</result>
+		<action name="userRegisterForm" method="userRegisterForm" class="com.pc.collabtest.actions.UserRegisterAction">
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">jsp/userRegisterForm.jsp</result>
 		</action>
 		
-		<action name="userRegisterForm" method="userRegisterForm" class="com.pc.collabtest.actions.UserRegisterAction">
-			<interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref>
-			<result name="success">/userRegisterForm.jsp</result>
+		
+		<action name="userList" method="userList" class="com.pc.collabtest.actions.UserAction">
+			<result name="success">jsp/userList.jsp</result>
 		</action>
+
+	
 	</package>
 
 	<package name="my-bean-validation" extends="struts-bean-validation">
+		<interceptors>
+			<interceptor name="authentication" class="com.pc.collabtest.interceptors.AuthenticatorInterceptor"></interceptor>
+			<interceptor-stack name="validationAuthStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref>
+				<interceptor-ref name="beanValidationDefaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="validationStack">
+				<interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref>
+				<interceptor-ref name="beanValidationDefaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="validationAuthStack"></default-interceptor-ref>
+		<global-results>
+			<result name="loginForm" type="redirectAction">loginForm</result>
+		</global-results>
+
 		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
-		    <interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref>
-			<interceptor-ref name="beanValidationDefaultStack"></interceptor-ref>
 			<result name="userList" type="redirectAction">userList</result>
 			<result name="userRegisterForm" type="redirectAction">userRegisterForm</result>
 			<result name="input" type="redirectAction">userRegisterForm</result>
 		</action>
-		
+
+        <!-- Login only required validation interceptor -->
 		<action name="login" method="login" class="com.pc.collabtest.actions.LoginAction">
-		    <interceptor-ref name="store"><param name="operationMode">STORE</param></interceptor-ref>
-			<interceptor-ref name="beanValidationDefaultStack"></interceptor-ref>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirectAction">userList</result>
 			<result name="input" type="redirectAction">loginForm</result>
 		</action>
