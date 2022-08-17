@@ -15,6 +15,8 @@
 						<th>Last Name</th>
 						<th>Age</th>
 						<th>Gender</th>
+						<th>Edit | Delete</th>
+						
 					</tr>
 				</thead>
 				<tbody> 
@@ -27,7 +29,16 @@
 							<td><s:property value="age" /></td>
 							<%--  <td><s:if test="gender=='M'">Male</s:if><s:else>Female</s:else> ---   <s:property value="gender"/></td> --%>
 							<td><c:if test="${gender == 'M'}">Male</c:if> <c:if test="${gender == 'F'}">Female</c:if></td>
-						</tr>
+							<td><s:form action="userEdit.action" name="userEdit" id="userEdit" class="signle_btn_form">
+								<s:hidden key="userId"></s:hidden>
+								<s:submit value="Edit" />
+								</s:form>
+								<s:form action="userDelete.action" name="userDelete" id="userDelete" class="signle_btn_form">
+								<s:hidden key="userId"></s:hidden>
+								<s:submit value="Delete"/>
+								</s:form>
+							</td>
+					</tr>
 					</s:iterator>
 				</tbody>				
 			</table>

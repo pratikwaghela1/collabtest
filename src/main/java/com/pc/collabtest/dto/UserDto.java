@@ -1,14 +1,7 @@
-package com.pc.collabtest.model;
+package com.pc.collabtest.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -18,15 +11,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
-public final class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
+
 	private Integer userId;
 	@NotBlank(message="firstName.required")
 	private String firstName;
@@ -47,8 +36,6 @@ public final class User {
 	@Email(message="email.format")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "addressId", referencedColumnName = "addressId") // Note: addressId = address_id db column
-	private Address address;
-	
+	@Valid
+	private AddressDto address;
 }

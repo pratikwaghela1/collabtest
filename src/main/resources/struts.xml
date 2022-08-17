@@ -27,9 +27,12 @@
 		    <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success">jsp/login.jsp</result>
 		</action>
-		<action name="userRegisterForm" method="userRegisterForm" class="com.pc.collabtest.actions.UserRegisterAction">
-		    <interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success">jsp/userRegisterForm.jsp</result>
+		
+		<!-- if we add add interceptor-ref then default-interceptor-ref wont be applied -->
+		<action name="userAddForm" method="userAddForm" class="com.pc.collabtest.actions.UserAddAction">
+		    <interceptor-ref name="defaultStack"></interceptor-ref> <!-- No login required -->
+		    <interceptor-ref name="store"><param name="operationMode">RETRIEVE</param></interceptor-ref> <!-- Retrieve error -->
+			<result name="success">jsp/userAdd.jsp</result>
 		</action>
 		
 		
@@ -61,10 +64,10 @@
 			<result name="loginForm" type="redirectAction">loginForm</result>
 		</global-results>
 
-		<action name="userRegister" method="userRegister" class="com.pc.collabtest.actions.UserRegisterAction">
+		<action name="userAdd" method="userAdd" class="com.pc.collabtest.actions.UserAddAction">
 			<result name="userList" type="redirectAction">userList</result>
-			<result name="userRegisterForm" type="redirectAction">userRegisterForm</result>
-			<result name="input" type="redirectAction">userRegisterForm</result>
+			<result name="userAddForm" type="redirectAction">userAddForm</result>
+			<result name="input" type="redirectAction">userAddForm</result> <!-- input will call when form validation fail -->
 		</action>
 
         <!-- Login only required validation interceptor -->

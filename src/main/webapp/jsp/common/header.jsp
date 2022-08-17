@@ -5,6 +5,7 @@
 <head>
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" >
 </head>
 <body>
 	<header class="p-3 mb-3 border-bottom">
@@ -18,7 +19,7 @@
 					<c:if test="${session.user == null}">
 					   <li><a href="loginForm.action" class="nav-link px-2 link-secondary">Login</a></li>
 					</c:if>
-					<li><a href="userRegisterForm.action" class="nav-link px-2 link-dark">Register</a></li>
+					<li><a href="userAddForm.action" class="nav-link px-2 link-dark">Register</a></li>
 					<li><a href="userList.action" class="nav-link px-2 link-dark">Users</a></li>
 				</ul>
 
